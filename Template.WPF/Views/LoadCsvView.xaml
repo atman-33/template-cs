@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Template.WPF.Views.LoadCsvView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:Template.WPF.Services"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Button Content="CSV読み込み"
+                        Margin="5"
+                        Padding="5"
+                        Command="{Binding SampleCsvLoadButton}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="5">
+                <ListView Width="200"
+                          Margin="5"
+                          ItemsSource="{Binding InputCsvListView}"
+                          SelectedItem="{Binding InputCsvListViewSelectedItem}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding TaskId}" Margin="5"/>
+                                <TextBlock Text="{Binding TaskContent}" Margin="5"/>
+                                <TextBlock Text="{Binding TaskDeadline}" Margin="5"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <StackPanel Orientation="Vertical"
+                            Margin="5" VerticalAlignment="Center">
+                    <Button Content=">>" Width="30" Margin="5"
+                            Command="{Binding MoveAllItemsButton}"/>
+                    <Button Content=">" Width="30" Margin="5"
+                            Command="{Binding MoveSelectedItemButton}"/>
+                    <Button Content="&lt;" Width="30" Margin="5"
+                            Command="{Binding RemoveSelectedItemButton}"/>
+                    <Button Content="&lt;&lt;" Width="30" Margin="5"
+                            Command="{Binding RemoveAllItemsButton}"/>
+                </StackPanel>
+
+                <!--BindingReorderableItemsControlBehavior.Callback:アイテムをドラッグ&ドロップで並び替え-->
+                <ListView x:Name="OutputCsvListViewElement"
+                          Width="200"
+                          Margin="5"
+                          ItemsSource="{Binding OutputCsvListView}"
+                          SelectedItem="{Binding OutputCsvListViewSelectedItem}"
+                          SelectedIndex="{Binding OutputCsvListViewSelectedIndex}"
+                          local:BindingReorderableItemsControlBehavior.Callback="{Binding OutputCsvListViewDropCallback}"
+                          AllowDrop="True">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding TaskId}" Margin="5"/>
+                                <TextBlock Text="{Binding TaskContent}" Margin="5"/>
+                                <TextBlock Text="{Binding TaskDeadline}" Margin="5"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</UserControl>
