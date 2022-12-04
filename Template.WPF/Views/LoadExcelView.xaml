@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="Template.WPF.Views.LoadExcelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:Template.WPF.Services"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="5" >
+                <Label Content="FilePath:" Width="100" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding FilePathTextBox}" Width="500" Height="30" VerticalContentAlignment="Center"/>
+                <Button Content="ファイルを選択"
+                        Command="{Binding SelectExcelFileButton}"
+                        Margin="5" Padding="5,0,5,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="SheetName:" Width="100" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding SheetNameTextBox}" Width="500" Height="30" VerticalContentAlignment="Center"/>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="5">
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Button Content="Excel読み込み"
+                            Width="100"
+                            Margin="5"
+                            Padding="5"
+                            Command="{Binding LoadExcelButton}"/>
+                    <DataGrid Margin="5"
+                          ItemsSource="{Binding InputExcelDataGrid}"
+                          Width="300">
+                    </DataGrid>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Excel読み込み2"
+                            Width="100"
+                            Margin="5"
+                            Padding="5"
+                            Command="{Binding LoadExcel2Button}"/>
+                        <Label Content="検索:" 
+                               VerticalAlignment="Center" 
+                               Margin="10,0,0,0"/>
+                        <TextBox Text="{Binding SearchTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Width="200"
+                                 Margin="5" VerticalAlignment="Center">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <prism:InvokeCommandAction Command="{Binding SearchTextBoxTextChanged}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
+
+                    </StackPanel>
+
+                    <!--  Drag and Drop Popup  -->
+                    <Popup x:Name="DraggingPopup"
+                           AllowsTransparency="True"
+                           IsHitTestVisible="False"
+                           Placement="RelativePoint"
+                           PlacementTarget="{Binding ElementName=InputExcel2DataGridName}">
+                        <!--  Popup construction Use properties of DraggedObject inside for Binding  -->
+                        <TextBlock Margin="8,0,0,0"
+                                   VerticalAlignment="Center"
+                                   FontSize="14"
+                                   Foreground="Gray"
+                                   Text="{Binding Path=TaskContent}"/>
+                    </Popup>
+
+                    <DataGrid Name="InputExcel2DataGridName" 
+                              Margin="5"
+                              ItemsSource="{Binding InputExcel2Records}"
+                              Width="300"
+                              SelectionMode="Single"
+                              local:BindingDragDropRowBehavior.Enabled="True"
+                              local:BindingDragDropRowBehavior.PopupControl="{Binding ElementName=DraggingPopup}"
+                              AllowDrop="True">
+                    </DataGrid>
+                </StackPanel>
+
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

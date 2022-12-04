@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Images\database.png" />
+    <None Remove="Images\download.png" />
+    <None Remove="Images\feather_pen.png" />
+    <None Remove="Images\full_task_tray.png" />
+    <None Remove="Images\home.png" />
+    <None Remove="Images\note_and_pencil.png" />
+    <None Remove="Images\setting.png" />
+    <None Remove="Images\simple_document.png" />
+    <None Remove="Images\stamp.png" />
+    <None Remove="Images\three_dot_leader.png" />
+    <None Remove="Images\three_line.png" />
+    <None Remove="Images\xlsx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="HamburgerMenu" Version="0.1.0" />
+    <PackageReference Include="Prism.Unity" Version="8.1.97" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Template.Domain\Template.Domain.csproj" />
+    <ProjectReference Include="..\Template.Infrastruture\Template.Infrastruture.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\database.png" />
+    <Resource Include="Images\download.png" />
+    <Resource Include="Images\feather_pen.png" />
+    <Resource Include="Images\full_task_tray.png" />
+    <Resource Include="Images\home.png" />
+    <Resource Include="Images\simple_document.png" />
+    <Resource Include="Images\three_dot_leader.png" />
+    <Resource Include="Images\note_and_pencil.png" />
+    <Resource Include="Images\setting.png" />
+    <Resource Include="Images\stamp.png" />
+    <Resource Include="Images\three_line.png" />
+    <Resource Include="Images\xlsx.png" />
+  </ItemGroup>
+</Project>
