@@ -16,5 +16,5 @@ C:\Repos\template-cs\Template.WPF\App.xaml
 211-977101932
 Views\AutoUpdateDisplayView.xaml;Views\HomeView.xaml;Views\LoadCsvView.xaml;Views\LoadExcelView.xaml;Views\MainWindow.xaml;Views\SampleNavigationView.xaml;Views\SampleTableEdit1View.xaml;Views\SampleTableEdit2View.xaml;Views\SampleTableEdit3View.xaml;Views\SettingsView.xaml;
 
-True
+False
 
